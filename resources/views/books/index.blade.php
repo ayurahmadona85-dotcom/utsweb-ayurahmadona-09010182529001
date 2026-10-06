@@ -19,7 +19,7 @@
                 <div class="position-relative">
                     <i class="bi bi-search position-absolute" style="left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
                     <input type="text" name="search" value="{{ $search }}" class="form-control ps-5"
-                           placeholder="Cari judul atau penulis...">
+                              placeholder="Cari berdasarkan judul buku..." aria-label="Cari berdasarkan judul buku">
                 </div>
             </div>
             <div class="col-md-4">
@@ -69,16 +69,19 @@
                         <td><span class="badge-stock">{{ $book->stock }}</span></td>
                         <td class="text-center">
                             <div class="d-flex gap-1 justify-content-center">
-                                <a href="{{ route('books.show', $book) }}" class="btn btn-sm btn-soft-info btn-modern" title="Detail">
+                                <a href="{{ route('books.show', $book) }}" class="btn btn-sm btn-soft-info btn-modern"
+                                   title="Detail" aria-label="Lihat detail buku {{ $book->title }}">
                                     <i class="bi bi-eye-fill"></i>
                                 </a>
-                                <a href="{{ route('books.edit', $book) }}" class="btn btn-sm btn-soft-warning btn-modern" title="Edit">
+                                <a href="{{ route('books.edit', $book) }}" class="btn btn-sm btn-soft-warning btn-modern"
+                                   title="Edit" aria-label="Edit buku {{ $book->title }}">
                                     <i class="bi bi-pencil-fill"></i>
                                 </a>
                                 <form action="{{ route('books.destroy', $book) }}" method="POST" class="d-inline"
                                       onsubmit="return confirm('Yakin ingin menghapus buku ini?')">
                                     @csrf @method('DELETE')
-                                    <button class="btn btn-sm btn-soft-danger btn-modern" title="Hapus">
+                                                                        <button type="submit" class="btn btn-sm btn-soft-danger btn-modern"
+                                                                                        title="Hapus" aria-label="Hapus buku {{ $book->title }}">
                                         <i class="bi bi-trash-fill"></i>
                                     </button>
                                 </form>

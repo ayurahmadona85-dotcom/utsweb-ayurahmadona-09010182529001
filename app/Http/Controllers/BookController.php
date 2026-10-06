@@ -15,10 +15,7 @@ class BookController extends Controller
 
         $books = Book::with('category')
             ->when($search, function ($q) use ($search) {
-                $q->where(function ($w) use ($search) {
-                    $w->where('title', 'like', "%{$search}%")
-                      ->orWhere('author', 'like', "%{$search}%");
-                });
+                $q->where('title', 'like', "%{$search}%");
             })
             ->when($categoryId, fn($q) => $q->where('category_id', $categoryId))
             ->latest()
